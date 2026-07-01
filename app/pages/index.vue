@@ -20,14 +20,18 @@ interface WeatherData {
   temperature: string
 }
 
-const { data: weather } = await useFetch<WeatherData>('https://ymbit.cn/api/weather/today')
+const { data: weather } = await useFetch<WeatherData>('https://ymbit.cn/api/weather/today', {
+  server: false
+})
 
 // IP Location
 interface IpData {
   query: string
 }
 
-const { data: ipData } = await useFetch<IpData>('https://ymbit.cn/api/ip/location')
+const { data: ipData } = await useFetch<IpData>('https://ymbit.cn/api/ip/location', {
+  server: false
+})
 
 // Weather icon mapping
 function getWeatherIcon(weather: string): string {
