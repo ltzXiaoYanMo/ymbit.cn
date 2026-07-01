@@ -10,7 +10,8 @@ interface HitokotoData {
 }
 
 const { data: hitokotoData, refresh: refreshHitokoto } = await useFetch<HitokotoData>('https://v1.hitokoto.cn/', {
-  query: { c: 'f' }
+  query: { c: 'f' },
+  server: false
 })
 
 // Weather
