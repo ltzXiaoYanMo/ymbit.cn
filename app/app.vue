@@ -1,10 +1,12 @@
 <script setup>
+const siteIcon = 'https://avatar.ymbit.cn'
+
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   link: [
-    { rel: 'icon', href: 'https://avatar.ymbit.cn/' }
+    { rel: 'icon', href: siteIcon }
   ],
   htmlAttrs: {
     lang: 'zh-CN'
@@ -33,7 +35,7 @@ useSeoMeta({
           class="flex items-center gap-2"
         >
           <UAvatar
-            src="https://avatar.ymbit.cn/"
+            :src="siteIcon"
             alt="烟墨的小破站"
             size="sm"
           />
@@ -46,11 +48,11 @@ useSeoMeta({
       </template>
     </UHeader>
 
-    <UMain class="flex-1">
+    <UMain class="flex-1 pb-24 sm:pb-20">
       <NuxtPage />
     </UMain>
 
-    <UFooter class="backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-t border-white/20 mt-auto">
+    <UFooter class="fixed inset-x-0 bottom-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-t border-white/20">
       <template #left>
         <p class="text-sm text-muted">
           © 2020-{{ new Date().getFullYear() }} ltzXiaoYanMo

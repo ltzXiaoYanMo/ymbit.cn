@@ -2,6 +2,8 @@
 import { socials } from '~/data/socials'
 import { friends } from '~/data/friends'
 
+const siteIcon = 'https://avatar.ymbit.cn'
+
 // Hitokoto
 interface HitokotoData {
   hitokoto: string
@@ -70,7 +72,7 @@ onMounted(() => {
       <!-- Hero Section -->
       <section :class="['flex flex-col items-center text-center space-y-6', 'fade-up', 'delay-1', { visible: isVisible }]">
         <UAvatar
-          src="https://avatar.ymbit.cn/"
+          :src="siteIcon"
           alt="烟墨"
           size="3xl"
           class="ring-4 ring-white/50 shadow-xl"
