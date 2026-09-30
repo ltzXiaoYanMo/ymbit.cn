@@ -17,10 +17,15 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { prerender: true }
+    '/**': { prerender: true }
   },
 
   compatibilityDate: '2025-01-15',
+
+  // 纯静态输出：build 直接产出 index.html + 静态资源，不需要 Node 服务端
+  nitro: {
+    preset: 'static'
+  },
 
   eslint: {
     config: {

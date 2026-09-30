@@ -4,6 +4,9 @@ import { friends } from '~/data/friends'
 
 const { src: siteAvatar, onAvatarError } = useSiteAvatar()
 
+// 天气 / IP 接口
+const apiBase = 'https://api.ymbit.cn'
+
 // Hitokoto
 interface HitokotoData {
   hitokoto: string
@@ -23,7 +26,7 @@ interface WeatherData {
   temperature: string
 }
 
-const { data: weather } = await useFetch<WeatherData>('https://ymbit.cn/api/weather/today', {
+const { data: weather } = await useFetch<WeatherData>(`${apiBase}/weather/today`, {
   server: false
 })
 
@@ -32,7 +35,7 @@ interface IpData {
   query: string
 }
 
-const { data: ipData } = await useFetch<IpData>('https://ymbit.cn/api/ip/location', {
+const { data: ipData } = await useFetch<IpData>(`${apiBase}/ip/location`, {
   server: false
 })
 

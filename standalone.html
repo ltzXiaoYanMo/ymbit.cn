@@ -236,7 +236,7 @@
     }
 
     // Fetch weather
-    fetch('https://ymbit.cn/api/weather/today')
+    fetch('https://api.ymbit.cn/weather/today')
       .then(r => r.json())
       .then(data => {
         const card = document.getElementById('weather-card');
@@ -250,7 +250,7 @@
       .catch(() => {});
 
     // Fetch IP
-    fetch('https://ymbit.cn/api/ip/location')
+    fetch('https://api.ymbit.cn/ip/location')
       .then(r => r.json())
       .then(data => {
         if (data.query) {
