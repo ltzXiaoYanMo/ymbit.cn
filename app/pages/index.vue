@@ -2,7 +2,7 @@
 import { socials } from '~/data/socials'
 import { friends } from '~/data/friends'
 
-const siteIcon = 'https://avatar.ymbit.cn'
+const { src: siteAvatar, onAvatarError } = useSiteAvatar()
 
 // Hitokoto
 interface HitokotoData {
@@ -72,10 +72,11 @@ onMounted(() => {
       <!-- Hero Section -->
       <section :class="['flex flex-col items-center text-center space-y-6', 'fade-up', 'delay-1', { visible: isVisible }]">
         <UAvatar
-          :src="siteIcon"
+          :src="siteAvatar"
           alt="烟墨"
           size="3xl"
           class="ring-4 ring-white/50 shadow-xl"
+          @error="onAvatarError"
         />
 
         <div class="space-y-3">
@@ -196,6 +197,7 @@ onMounted(() => {
 </template>
 
 <!-- 我不知道为什么 WebStorm 一定要说他没用 但是真注释了又跑不来 -->
+<!-- eslint-disable-next-line vue/html-comment-content-spacing -- WebStorm 抑制注释不能加空格 -->
 <!--suppress CssUnusedSymbol -->
 <style scoped>
 .fade-up {

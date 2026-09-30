@@ -1,9 +1,10 @@
+import type { Component } from 'vue'
 import { Newspaper, Link, Open } from '@vicons/ionicons5'
 
 export interface Friend {
   name: string
   url: string
-  icon: any
+  icon: Component
 }
 
 export const friends: Friend[] = [

@@ -1,12 +1,13 @@
 <script setup>
-const siteIcon = 'https://avatar.ymbit.cn'
+const { src: siteAvatar, onAvatarError } = useSiteAvatar()
 
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   link: [
-    { rel: 'icon', href: siteIcon }
+    { rel: 'icon', href: siteAvatar },
+    { rel: 'apple-touch-icon', href: siteAvatar }
   ],
   htmlAttrs: {
     lang: 'zh-CN'
@@ -27,69 +28,77 @@ useSeoMeta({
 </script>
 
 <template>
-  <UApp class="flex flex-col min-h-screen">
-    <UHeader class="liquid-glass-header">
-      <template #left>
-        <NuxtLink
-          to="/"
-          class="flex items-center gap-2"
-        >
-          <UAvatar
-            :src="siteIcon"
-            alt="烟墨的小破站"
-            size="sm"
-          />
-          <span class="font-bold text-lg">烟墨的小破站</span>
-        </NuxtLink>
-      </template>
-
-      <template #right>
-        <UColorModeButton />
-      </template>
-    </UHeader>
-
-    <UMain class="flex-1 pb-24 sm:pb-20">
-      <NuxtPage />
-    </UMain>
-
-    <UFooter class="fixed inset-x-0 bottom-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-t border-white/20">
-      <template #left>
-        <p class="text-sm text-muted">
-          © 2020-{{ new Date().getFullYear() }} ltzXiaoYanMo
-        </p>
-      </template>
-
-      <template #right>
-        <div class="flex flex-col sm:flex-row items-end gap-1 text-xs text-muted">
-          <a
-            href="https://beian.miit.gov.cn/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-primary transition-colors"
+  <UApp>
+    <!--
+      UApp 只提供 ConfigProvider 等上下文，并不会渲染根元素，
+      写在 <UApp class="..."> 上的 class 会被丢弃（fragment 根节点无法继承 attrs），
+      所以 flex / min-h-screen 这类布局类必须放在真实的包裹元素上。
+    -->
+    <div class="flex min-h-screen flex-col">
+      <UHeader class="liquid-glass-header">
+        <template #left>
+          <NuxtLink
+            to="/"
+            class="flex items-center gap-2"
           >
-            浙ICP备2024084850号-1
-          </a>
-          <span class="hidden sm:inline">|</span>
-          <a
-            href="https://beian.mps.gov.cn/#/query/webSearch?code=33038102332470"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-primary transition-colors"
-          >
-            浙公网安备33038102332470号
-          </a>
-          <span class="hidden sm:inline">|</span>
-          <a
-            href="https://icp.gov.moe/?keyword=20240848"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-primary transition-colors"
-          >
-            萌ICP备20240848号
-          </a>
-        </div>
-      </template>
-    </UFooter>
+            <UAvatar
+              :src="siteAvatar"
+              alt="烟墨的小破站"
+              size="sm"
+              @error="onAvatarError"
+            />
+            <span class="font-bold text-lg">烟墨的小破站</span>
+          </NuxtLink>
+        </template>
+
+        <template #right>
+          <UColorModeButton />
+        </template>
+      </UHeader>
+
+      <UMain class="flex-1 pb-24 sm:pb-20">
+        <NuxtPage />
+      </UMain>
+
+      <UFooter class="fixed inset-x-0 bottom-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-t border-white/20">
+        <template #left>
+          <p class="text-sm text-muted">
+            © 2020-{{ new Date().getFullYear() }} ltzXiaoYanMo
+          </p>
+        </template>
+
+        <template #right>
+          <div class="flex flex-col sm:flex-row items-end gap-1 text-xs text-muted">
+            <a
+              href="https://beian.miit.gov.cn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary transition-colors"
+            >
+              浙ICP备2024084850号-1
+            </a>
+            <span class="hidden sm:inline">|</span>
+            <a
+              href="https://beian.mps.gov.cn/#/query/webSearch?code=33038102332470"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary transition-colors"
+            >
+              浙公网安备33038102332470号
+            </a>
+            <span class="hidden sm:inline">|</span>
+            <a
+              href="https://icp.gov.moe/?keyword=20240848"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary transition-colors"
+            >
+              萌ICP备20240848号
+            </a>
+          </div>
+        </template>
+      </UFooter>
+    </div>
   </UApp>
 </template>
 
