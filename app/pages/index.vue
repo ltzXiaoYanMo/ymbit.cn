@@ -4,8 +4,8 @@ import { friends } from '~/data/friends'
 
 const { src: siteAvatar, onAvatarError } = useSiteAvatar()
 
-// 天气 / IP 接口
-const apiBase = 'https://api.ymbit.cn'
+// 天气 / IP 接口（api.ymbit.cn 是网关，路由仍带 /api 前缀）
+const apiBase = 'https://api.ymbit.cn/api'
 
 // Hitokoto
 interface HitokotoData {
